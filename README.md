@@ -1,4 +1,4 @@
-# Final_Rarify
+# Rarify
 
 ## Conceito
 
