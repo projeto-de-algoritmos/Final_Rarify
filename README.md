@@ -43,7 +43,7 @@ A solução aqui poderá envolver um algoritmo dividir para conquistar, ou seja,
 
 ### Representações
 
-O frontend será feito em React, devido a experência pessoal do autor com a ferramenta. A biblioteca de plot de nodos poderá ser a [anychart](https://www.anychart.com/blog/2020/07/22/network-graph-javascript/), [arbor.js](http://arborjs.org/) (já utilizada pelo [autor](https://github.com/RenatoBrittoAraujo/The-Tree-of-Knowledge-) nesse projeto) ou até mesmo o HTML5 canvas com código especial para cumprir tal tarefa.
+O frontend será feito em React, devido a experência pessoal do autor com a ferramenta. A biblioteca de plot de nodos poderá ser a [anychart](https://www.anychart.com/blog/2020/07/22/network-graph-javascript/), [arbor.js](http://arborjs.org/) (já utilizada pelo autor [nesse](https://github.com/RenatoBrittoAraujo/The-Tree-of-Knowledge-FRONT) projeto) ou até mesmo o HTML5 canvas com código especial para cumprir tal tarefa.
 
 ### Backend
 
