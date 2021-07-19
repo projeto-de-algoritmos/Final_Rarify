@@ -34,3 +34,21 @@ Alguma heurística deverá ser criada para se discernir quais dos vários de lin
 ### Problema de fluxo
 
 TODO
+
+### Problema de cáculo de raridade
+
+Este cálculo é a pergunta que este projeto tenta responder: existe alguma forma de atribuir algum valor de "raridade" para alguma página web a partir de pesquisas no Google?
+
+A solução aqui poderá envolver um algoritmo dividir para conquistar, ou seja, cada um dos problema
+
+### Representações
+
+O frontend será feito em React, devido a experência pessoal do autor com a ferramenta. A biblioteca de plot de nodos poderá ser a [anychart](https://www.anychart.com/blog/2020/07/22/network-graph-javascript/), [arbor.js](http://arborjs.org/) (já utilizada pelo [autor](https://github.com/RenatoBrittoAraujo/The-Tree-of-Knowledge-) nesse projeto) ou até mesmo o HTML5 canvas com código especial para cumprir tal tarefa.
+
+### Backend
+
+Os algoritmos estarão presentes apenas no backend, o frontend apenas será atualizado. O backend poderá ser feito em [node.js](https://nodejs.org/en/).
+
+### Deploy
+
+Será feito em [AWS EC2](https://aws.amazon.com/ec2/).
