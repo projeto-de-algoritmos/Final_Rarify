@@ -20,3 +20,17 @@ Os meios aos quais faremos isso serão:
 
 
 ## Desafios Técnicos
+
+### Capacidade de busca
+
+Muitas buscas de página web + extração de dados contidos no HTML. 
+
+É estimado que cada busca demore 1 segundo, e um serviço como um [EC2 na amazon](https://aws.amazon.com/ec2/) consegue fazer centenas simultâneamente com threads, portanto vamos supor de antemão que 100 outbound requests por segundo podem ser feitas. Esta suposição será avaliada...
+
+### Problema de termos mínimos
+
+Alguma heurística deverá ser criada para se discernir quais dos vários de links serão investigados mais a fundo em relação a outros para cada página. A ideia seria usar um match de keywords com LCS referênciadas pelo conteúdo dentro da tag (eg.: `<a>keyword1 bla bla keyword2 bla</a>`). Com isso, poderíamos propor várias sugestões de termos (palavras/letras/espaços) para um algoritmo knapsack que escolherá adotar alguns deles dentro de um limite de caracteres (que seria o peso máximo da mochila), o peso de cada termo é equivalente ao número de caracteres alfanuméricos contido nele, com o limite máximo de 1 espaço entre caracteres alfanuméricos.
+
+### Problema de fluxo
+
+TODO
