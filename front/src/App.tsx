@@ -12,6 +12,7 @@ function App() {
         <div
           style={{
             flex: 1,
+            height: "calc(100% - 64px)",
           }}
         >
           <Switch>

@@ -54,3 +54,11 @@ Os algoritmos estarão presentes apenas no backend, o frontend apenas será atua
 ### Deploy
 
 Será feito em [AWS EC2](https://aws.amazon.com/ec2/).
+
+## Fases
+
+Para cumprir os requisitos estabelecidos no plano de ensino, seguiremos uma progressão ordenada de features:
+
+### Projeto de grafos
+
+Faremos o sistema de busca, apenas procurando caminhos até o nodo final (o site).
