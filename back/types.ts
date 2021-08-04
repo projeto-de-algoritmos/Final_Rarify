@@ -1,0 +1,22 @@
+export interface SearchParams {
+  url: string;
+  method: "bfs" | "dfs" | "best first";
+  order: "random" | "first";
+  maxDepth: number;
+  maxChars: number;
+}
+
+export interface Node {
+  children: Node[];
+  parent: Node;
+  link: string;
+  leadsToSuccess: boolean;
+  parentLinkStrength: number;
+}
+
+export interface Protocol {
+  root: Node;
+  rarity: null | number;
+  minimalSearchParam: string;
+  keywords: string[];
+}

@@ -1,0 +1,28 @@
+services:
+  front:
+    container_name: front
+    build: front
+    volumes:
+      - .:/front
+    ports:
+      - "80:3000"
+    networks:
+      - internal
+    environment:
+      - BACKEND_LOCATION=http://back:7000
+
+  back:
+    container_name: back
+    build: back
+    volumes:
+      - .:/back
+    ports:
+      - "7000:7000"
+    networks:
+      - internal
+    environment:
+      - MONGO_DB=??
+
+networks:
+  internal:
+    name: internal
