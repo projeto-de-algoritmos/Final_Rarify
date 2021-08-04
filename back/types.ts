@@ -15,8 +15,9 @@ export interface Node {
 }
 
 export interface Protocol {
+  status: string;
   root: Node;
   rarity: null | number;
-  minimalSearchParam: string;
+  minimalSearchParam: null | string;
   keywords: string[];
 }
