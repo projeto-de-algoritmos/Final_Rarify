@@ -28,4 +28,5 @@ await app.listen({ port });
   2. that is received and protocol generated from it
   3. whenever user makes a protocol status request, 
      he gets latest info from db
+  4. worker thread makes searches and run algorithms
 */
