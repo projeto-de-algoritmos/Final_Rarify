@@ -65,9 +65,4 @@ Faremos o sistema de busca, apenas procurando caminhos até o nodo final (o site
 
 ## Detalhes técnicos
 
-Instruções para deploy em ECS:
-
-1. Baixe pacote `aws-cli` e `ecs-cli`.
-2. Configure com `aws configure` e `ec2-cli configure`
-3. (CASO NÃO EXISTA CLUSTER) Rode `./create_cluster.sh`
-4. Deploye stack com `./deploy_stack.sh`
+O motivo pelo qual nginx não é um simples serviço e sim sua própria pasta é por causa de [bind mounts](https://docs.aws.amazon.com/AmazonECS/latest/userguide/bind-mounts.html).
