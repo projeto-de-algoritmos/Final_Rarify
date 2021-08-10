@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import main from "../scripts/main";
 import JQuery from "jquery";
@@ -11,12 +11,15 @@ function Home() {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const containerRef = React.useRef(null);
   const [canvas, setCanvas] = React.useState<any>(null);
+  const [searchPage, setSearchPage] = React.useState("");
 
   useEffect(() => {
     if (canvas === null) {
       const c = main(JQuery, "canvasItem");
       c.init();
       setCanvas(c);
+      c.addNode({ name: "jose" });
+      c.addNode({ name: "joao" });
     }
   }, [canvasRef]);
 
@@ -32,9 +35,31 @@ function Home() {
           borderRight: "1px solid #ddd",
           width: "400px",
           height: "100%",
+          textAlign: "left",
+          padding: 10,
         }}
       >
-        sidebar
+        <Typography style={{ marginTop: 10 }}>Page:</Typography>
+        <TextField
+          placeholder="https://fga.unb.br/"
+          onChange={(e) => setSearchPage(e.target.value)}
+          style={{ width: "100%" }}
+        ></TextField>
+        <br />
+        <div style={{ marginTop: 10, textAlign: "center" }}>
+          <Button
+            style={{
+              backgroundColor: "#66a",
+              color: "white",
+              marginTop: 10,
+              width: "100%",
+            }}
+          >
+            <Typography style={{ fontSize: 15, fontWeight: 600 }}>
+              Search
+            </Typography>
+          </Button>
+        </div>
       </Grid>
       <Grid
         xs

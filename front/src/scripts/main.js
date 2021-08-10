@@ -20,7 +20,7 @@ export default function ($, canvasID, methods) {
 
     // Node params
     textSize: 15,
-    textFont: "Verdana",
+    textFont: "Roboto",
     horizontalPadding: 10,
     verticalPadding: 10,
 
@@ -48,24 +48,25 @@ export default function ($, canvasID, methods) {
 
     var selected = null;
     var selectNode = function (newSelected) {
-      if (selected && selected.node.name == newSelected.node.name) {
-        selected.node.addData("selected", false);
-        selected = null;
-        return;
-      }
-      if (selected) {
-        selected.node.addData("selected", false);
-      }
-      selected = newSelected;
-      selected.node.addData("selected", true);
-      let nodeData = {
-        name: selected.node.name,
-        id: selected.node.getData("id"),
-      };
-      if (selected.node.getData("parent")) {
-        nodeData.parent = selected.node.getData("parent");
-      }
-      methods.NDselect(nodeData);
+      // console.log("selectNode called");
+      // if (selected && selected.node.name == newSelected.node.name) {
+      //   selected.node.addData("selected", false);
+      //   selected = null;
+      //   return;
+      // }
+      // if (selected) {
+      //   selected.node.addData("selected", false);
+      // }
+      // selected = newSelected;
+      // selected.node.addData("selected", true);
+      // let nodeData = {
+      //   name: selected.node.name,
+      //   id: selected.node.getData("id"),
+      // };
+      // if (selected.node.getData("parent")) {
+      //   nodeData.parent = selected.node.getData("parent");
+      // }
+      // methods.NDselect(nodeData);
     };
 
     /* Returned as rendering object */
@@ -153,15 +154,14 @@ export default function ($, canvasID, methods) {
             let radius = Globals.verticalPadding + Globals.textSize / 2.0;
             let cy = shape.y + Globals.verticalPadding + Globals.textSize / 2.0;
             let firstCX = shape.x + radius;
-            let secondCX = shape.x + shape.w - radius;
 
             ctx.beginPath();
             ctx.fillStyle = node.getData("expanded")
               ? Globals.expandedColor
               : Globals.notexpandedColor;
-            // Left circle
-            ctx.arc(firstCX, cy, radius, 0, 2.0 * Math.PI);
-            ctx.fill();
+            ctx.moveTo(firstCX, cy + 13);
+            ctx.lineTo(textWidth + firstCX, cy + 13);
+            ctx.stroke();
 
             ctx.beginPath();
 
@@ -180,22 +180,22 @@ export default function ($, canvasID, methods) {
             // If child, render the close button in it's side
             let isChild = particleSystem.getEdgesFrom(node).length == 0;
             if (isChild) {
-              let closeBtn = {
-                x: secondCX + 18,
-                y: cy - 13,
-                radius: 7,
-              };
-              ctx.fillStyle = "rgb(200,0,0)";
-              ctx.beginPath();
-              ctx.arc(
-                closeBtn.x,
-                closeBtn.y,
-                closeBtn.radius,
-                0,
-                2.0 * Math.PI
-              );
-              ctx.fill();
-              node.addData("closeNode", closeBtn);
+              // let closeBtn = {
+              //   x: secondCX + 18,
+              //   y: cy - 13,
+              //   radius: 7,
+              // };
+              // ctx.fillStyle = "rgb(200,0,0)";
+              // ctx.beginPath();
+              // ctx.arc(
+              //   closeBtn.x,
+              //   closeBtn.y,
+              //   closeBtn.radius,
+              //   0,
+              //   2.0 * Math.PI
+              // );
+              // ctx.fill();
+              // node.addData("closeNode", closeBtn);
             } else {
               node.addData("closeNode", null);
             }
@@ -231,13 +231,6 @@ export default function ($, canvasID, methods) {
               );
             } else {
               _mouseP = arbor.Point(e.pageX - pos.left, e.pageY - pos.top);
-            }
-            // Check for closing a node
-            let foundNode = await particleSystem.closeButton(_mouseP);
-            if (foundNode) {
-              childMurder(foundNode);
-              particleSystem.pruneNode(foundNode);
-              return false;
             }
             // Check for selected or dragging of a node
             dragged = particleSystem.nearest(_mouseP);
