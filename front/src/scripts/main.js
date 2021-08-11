@@ -47,27 +47,6 @@ export default function ($, canvasID, methods) {
     var particleSystem;
 
     var selected = null;
-    var selectNode = function (newSelected) {
-      // console.log("selectNode called");
-      // if (selected && selected.node.name == newSelected.node.name) {
-      //   selected.node.addData("selected", false);
-      //   selected = null;
-      //   return;
-      // }
-      // if (selected) {
-      //   selected.node.addData("selected", false);
-      // }
-      // selected = newSelected;
-      // selected.node.addData("selected", true);
-      // let nodeData = {
-      //   name: selected.node.name,
-      //   id: selected.node.getData("id"),
-      // };
-      // if (selected.node.getData("parent")) {
-      //   nodeData.parent = selected.node.getData("parent");
-      // }
-      // methods.NDselect(nodeData);
-    };
 
     /* Returned as rendering object */
     var that = {
@@ -285,18 +264,19 @@ export default function ($, canvasID, methods) {
               if (particle.node.name == hiddenNode) {
                 return;
               }
+              window.open(particle.node.name);
               if (
                 particleSystem.getNode(particle.node.name).getData("expanded")
               ) {
-                childMurder(particleSystem.getNode(particle.node.name));
-                particleSystem
-                  .getNode(particle.node.name)
-                  .addData("expanded", null);
+                // childMurder(particleSystem.getNode(particle.node.name));
+                // particleSystem
+                //   .getNode(particle.node.name)
+                //   .addData("expanded", null);
               } else {
-                methods.queryNode(particle.node);
-                particleSystem
-                  .getNode(particle.node.name)
-                  .addData("expanded", true);
+                // methods.queryNode(particle.node);
+                // particleSystem
+                //   .getNode(particle.node.name)
+                //   .addData("expanded", true);
               }
             }
             return false;
@@ -322,9 +302,7 @@ export default function ($, canvasID, methods) {
           dropped: function (e) {
             if (dragged === null || dragged.node === undefined) return;
             if (dragged.node !== null) dragged.node.fixed = false;
-            if (!moved) {
-              selectNode(dragged);
-            } else {
+            if (moved) {
               moved = false;
             }
             dragged.node.tempMass = 1000;
@@ -370,9 +348,9 @@ export default function ($, canvasID, methods) {
     sys.parameters({ gravity: true });
     sys.renderer = Renderer("#" + canvasID);
 
-    sys.addNode(node?.name || "emptyNode", { x: 0, y: 0, mass: 1 });
-    sys.getNode(node?.name || "emptyNode").addData("id", node?.id || "12");
-    sys.addNode(hiddenNode, { hidden: true, x: 0, y: 0, mass: 1 });
+    // sys.addNode(node?.name || "emptyNode", { x: 0, y: 0, mass: 1 });
+    // sys.getNode(node?.name || "emptyNode").addData("id", node?.id || "12");
+    sys.addNode("emptyNode", { hidden: true, x: 0, y: 0, mass: 1 });
     sys.addNode(hiddenNode, { hidden: true, x: 0, y: 0, mass: 1 });
     /* WARNING: for some reason, arbor crashed when you try
          to add a new node later if in this init function you
@@ -427,14 +405,17 @@ export default function ($, canvasID, methods) {
     sys.pruneEdge(sys.getEdges(edge.parent, edge.child)[0]);
   };
 
-  /* These are functions accessible from the vue component Graph,
-       they are used to communicate with the canvas */
+  const load = (data) => {
+    // Adds whatever is different from the current version.
+  };
+
+  // unselect,
+  // select,
+  // deleteEdge,
   return {
-    init,
-    addNode,
-    unselect,
-    select,
     deleteNode,
-    deleteEdge,
+    addNode,
+    init,
+    load,
   };
 }

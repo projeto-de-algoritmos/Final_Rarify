@@ -18,8 +18,11 @@ function Home() {
       const c = main(JQuery, "canvasItem");
       c.init();
       setCanvas(c);
-      c.addNode({ name: "jose" });
-      c.addNode({ name: "joao" });
+      let i = 0;
+      setInterval((e) => {
+        c.addNode({ name: "https://www.google.com/search?q=" + i.toString() });
+        i++;
+      }, 1000);
     }
   }, [canvasRef]);
 
@@ -39,18 +42,31 @@ function Home() {
           padding: 10,
         }}
       >
-        <Typography style={{ marginTop: 10 }}>Page:</Typography>
-        <TextField
-          placeholder="https://fga.unb.br/"
-          onChange={(e) => setSearchPage(e.target.value)}
-          style={{ width: "100%" }}
-        ></TextField>
+        <Typography style={{ marginTop: 10 }}>
+          <h3>Page:</h3>
+        </Typography>
+        <div
+          style={{
+            backgroundColor: "rgba(70, 70, 200, 0.1)",
+            padding: 4,
+            borderRadius: 4,
+          }}
+        >
+          <TextField
+            style={{
+              width: "100%",
+            }}
+            placeholder="https://fga.unb.br/"
+            onChange={(e) => setSearchPage(e.target.value)}
+          ></TextField>
+        </div>
         <br />
         <div style={{ marginTop: 10, textAlign: "center" }}>
           <Button
             style={{
               backgroundColor: "#66a",
               color: "white",
+              fontWeight: 500,
               marginTop: 10,
               width: "100%",
             }}
