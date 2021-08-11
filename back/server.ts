@@ -1,5 +1,5 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-import { protocol } from "./db.ts";
+import { search, getProtocol } from "./controllers.ts";
 const port = 7000;
 
 const app = new Application();
@@ -13,16 +13,18 @@ router.get("/", async (ctx) => {
   ctx.response.body = { detail: "ok" };
 });
 
-router.post("/search", async (ctx) => {
+router.get("/search/:term", async (ctx) => {
   const term = ctx.params["term"];
-  const protocolId = await protocol.insertOne({
-    status: "started",
-  });
-  ctx.response.body = protocolId;
+  if (term === undefined)
+    ctx.response.body = { error: "Cannot create protocol without term" };
+  else ctx.response.body = await search(ctx, term);
 });
 
-router.get("/status/:protocol", (ctx) => {
-  const term = ctx.params["protocol"];
+router.get("/protocol/:protocol", async (ctx) => {
+  const protocol = ctx.params["protocol"];
+  if (protocol === undefined)
+    ctx.response.body = { error: "Cannot get protocol" };
+  else ctx.response.body = await getProtocol(ctx, protocol);
 });
 
 console.log(`Server running at port ${port}`);

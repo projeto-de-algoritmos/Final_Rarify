@@ -16,6 +16,7 @@ export interface Node {
 
 export interface Protocol {
   status: string;
+  term: string;
   // root: Node;
   // rarity: null | number;
   // minimalSearchParam: null | string;

@@ -9,4 +9,4 @@ USER deno
 ADD . .
 RUN deno cache server.ts
 
-CMD ["deno", "run", "--allow-net", "server.ts"]
+CMD ["deno", "run", "--allow-net", "unstable", "server.ts"]
