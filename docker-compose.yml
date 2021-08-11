@@ -39,6 +39,20 @@ services:
     environment:
       - MONGO_DB=??
 
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    networks:
+      - internal
+    volumes:
+      - ./.ignore/mongo:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+
 networks:
   internal:
     name: internal

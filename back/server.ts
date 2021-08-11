@@ -1,4 +1,5 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
+import { protocol } from "./db.ts";
 const port = 7000;
 
 const app = new Application();
@@ -8,10 +9,16 @@ const router = new Router();
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-router.post("/search", (ctx) => {
+router.get("/", async (ctx) => {
+  ctx.response.body = { detail: "ok" };
+});
+
+router.post("/search", async (ctx) => {
   const term = ctx.params["term"];
-  const protocol = crypto.randomUUID();
-  ctx.response.body = protocol;
+  const protocolId = await protocol.insertOne({
+    status: "started",
+  });
+  ctx.response.body = protocolId;
 });
 
 router.get("/status/:protocol", (ctx) => {
